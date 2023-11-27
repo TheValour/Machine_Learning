@@ -7,12 +7,12 @@ import pandas as pd
 app = Flask(__name__)
 
 # Loading the model
-regmodel = pickle.load(open('regModel.pkl', 'rb'))
-scaler = pickle.load(open('scaling.pkl', 'rb'))
+regmodel = pickle.load(open('regModelAqi.pkl', 'rb'))
+scaler = pickle.load(open('scalingAqi.pkl', 'rb'))
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('AQI.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -20,7 +20,7 @@ def predict():
     final_input = scaler.transform(np.array(data).reshape(1, -1))
     print(final_input)
     output = regmodel.predict(final_input)[0]
-    return render_template("home.html", prediction_text=" {}".format(output))
+    return render_template("AQI.html", prediction_text="{}".format(output))
 
 if __name__ == "__main__":
     app.run(debug=True)

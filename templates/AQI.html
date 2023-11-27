@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html >
+    <head>
+    <meta charset="UTF-8">
+    <title>AQI APP</title>
+
+    <style>
+        body {
+        overflow:hidden;
+        width: 100vw;
+        height: 100vh;
+        background: gray;
+    }
+    span {
+        background: rgb(220, 217, 217);
+        padding: 2vh;
+    }
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .login {
+        background: white;
+        flex-direction: column ;
+        width: 60vw;
+        height: 80vh;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+    .login > form > * {
+        margin-bottom: 2vh;
+    }
+    .login > form > button {
+        padding: 2vh;
+        background-color: lightgreen;
+        border: none;
+        cursor: pointer;
+    }
+    input {
+        padding: 1vh;
+    }
+
+    </style> 
+    </head>
+
+    <body class="flex">
+    <div class="login flex">
+        <h1>AQI Index Predication</h1>
+
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}"method="post">
+            <div>
+                <input type="text" name="PM2.5" placeholder="PM2.5" required="required" />
+                <input type="text" name="PM10" placeholder="PM10" required="required" /><br>
+            </div>
+            <div>
+                <input type="text" name="NO" placeholder="NO" required="required" />
+                <input type="text" name="NO3" placeholder="NO3" required="required" /><br>
+            </div>
+            <div>
+                <input type="text" name="Nox" placeholder="Nox" required="required" />
+                <input type="text" name="NO2" placeholder="NO2" required="required" /><br>
+            </div>
+            <div>
+                <input type="text" name="CO" placeholder="CO" required="required" />
+                <input type="text" name="SO2" placeholder="SO2" required="required" /><br>
+            </div>
+            <div>
+                <input type="text" name="O3" placeholder="O3" required="required" />
+                <input type="text" name="Benzene" placeholder="Benzene" required="required" /><br>
+            </div>
+            <div>
+                <input type="text" name="Toluene" placeholder="Toluene" required="required" />
+                <input type="text" name="Xylene" placeholder="Xylene" required="required" /><br>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+        <br><br>   
+
+        <span>
+            AQI : {{prediction_text}} 
+        </span>
+    </div>
+
+    </body>
+</html>

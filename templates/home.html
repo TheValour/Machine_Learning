@@ -5,22 +5,52 @@
   <meta charset="UTF-8">
   <title>ML API</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 
-  
+  <style>
+    body {
+    overflow:hidden;
+    width: 100vw;
+    height: 100vh;
+    background: gray;
+}
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login {
+    background: white;
+    flex-direction: column ;
+    width: 60vw;
+    height: 80vh;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.login > form > * {
+    margin-bottom: 2vh;
+}
+.login > form > button {
+    padding: 2vh;
+    background-color: lightgreen;
+    border: none;
+    cursor: pointer;
+}
+
+  </style> 
 </head>
 
-<body>
- <div class="login">
+<body class="flex">
+ <div class="login flex">
 	<h1>California House Price Prediction</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
         
         <input type="text" name="MedInc" placeholder="MedInc" required="required" /><br>
-    	<input type="text" name="HouseAge" placeholder="HouseAge" required="required" /><br>
+    	  <input type="text" name="HouseAge" placeholder="HouseAge" required="required" /><br>
         <input type="text" name="AveRooms" placeholder="AveRooms" required="required" /><br>
         <input type="text" name="AveBedrms" placeholder="AveBedrms" required="required" /><br>
         <input type="text" name="Population" placeholder="Population" required="required" /><br>
@@ -32,8 +62,8 @@
     </form>
     <br><br>   
 
+    Price : {{prediction_text}} million
  </div>
- {{prediction_text}}
 
 </body>
 </html>
